@@ -17,12 +17,21 @@ class WXMP
     private $Handle;
     private $batch; //时间戳
 
-
+	public function __construct($appid, $appsecret)
++   {
++       $this->batch = date("YmdHis");
++       $this->appid = $appid;
++       $this->appsecret = $appsecret;
++       $this->Handle = fopen($this->Filename, 'a');
++       $_SESSION['expire_in'] = 0;
++   }
 	
 	public static function world()
     {
         return 'Hello World!';
     }
+	
+	 
 
     /**
      * 设置应用ID
