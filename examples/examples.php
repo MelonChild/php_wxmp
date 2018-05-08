@@ -5,7 +5,7 @@
  * @version 1.0
  */
 require 'vendor/autoload.php';
-use \Wxmp\WXMP;
+use Wxmp\WXMP;
 $client = new WXMP($appid, $appsecret);
 
 $articles['title'] = '222test';

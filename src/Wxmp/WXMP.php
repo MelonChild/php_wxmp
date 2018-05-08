@@ -1,9 +1,9 @@
-
 <?php
 /*
  *  Copyright (c) 2014 The CCP project authors. All Rights Reserved.
  *
  */
+namespace Wxmp;
 
 class WXMP
 {
@@ -17,13 +17,11 @@ class WXMP
     private $Handle;
     private $batch; //时间戳
 
-    public function __construct($appid, $appsecret)
+
+	
+	public static function world()
     {
-        $this->batch = date("YmdHis");
-        $this->appid = $appid;
-        $this->appsecret = $appsecret;
-        $this->Handle = fopen($this->Filename, 'a');
-        $_SESSION['expire_in'] = 0;
+        return 'Hello World!';
     }
 
     /**
