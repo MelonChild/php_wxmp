@@ -19,11 +19,11 @@ class WXMP
 
     public function __construct($appid, $appsecret)
     {
-        +$this->batch = date("YmdHis");
-        +$this->appid = $appid;
-        +$this->appsecret = $appsecret;
-        +$this->Handle = fopen($this->Filename, 'a');
-        +$_SESSION['expire_in'] = 0;
+        $this->batch = date("YmdHis");
+        $this->appid = $appid;
+        $this->appsecret = $appsecret;
+        $this->Handle = fopen($this->Filename, 'a');
+        $_SESSION['expire_in'] = 0;
     }
 
     public static function world()
