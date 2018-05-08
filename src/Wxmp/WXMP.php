@@ -17,21 +17,19 @@ class WXMP
     private $Handle;
     private $batch; //时间戳
 
-	public function __construct($appid, $appsecret)
-+   {
-+       $this->batch = date("YmdHis");
-+       $this->appid = $appid;
-+       $this->appsecret = $appsecret;
-+       $this->Handle = fopen($this->Filename, 'a');
-+       $_SESSION['expire_in'] = 0;
-+   }
-	
-	public static function world()
+    public function __construct($appid, $appsecret)
+    {
+        +$this->batch = date("YmdHis");
+        +$this->appid = $appid;
+        +$this->appsecret = $appsecret;
+        +$this->Handle = fopen($this->Filename, 'a');
+        +$_SESSION['expire_in'] = 0;
+    }
+
+    public static function world()
     {
         return 'Hello World!';
     }
-	
-	 
 
     /**
      * 设置应用ID
@@ -250,7 +248,7 @@ class WXMP
 
         //数据验证，对必选参数进行判空。
         if (!$path || !file_exists($path)) {
-            $data = new stdClass();
+            $data = new \stdClass();
             $data->errcode = '1201';
             $data->errmsg = '文件不能为空';
             return $data;
@@ -300,7 +298,7 @@ class WXMP
 
         //数据验证，对必选参数进行判空。
         if (!$path || !file_exists($path)) {
-            $data = new stdClass();
+            $data = new \stdClass();
             $data->errcode = '1201';
             $data->errmsg = '文件不能为空';
             return $data;
@@ -349,7 +347,7 @@ class WXMP
 
         //数据验证，对必选参数进行判空。
         if (!$media_id) {
-            $data = new stdClass();
+            $data = new \stdClass();
             $data->errcode = '1201';
             $data->errmsg = 'media_id不能为空';
             return $data;
@@ -403,7 +401,7 @@ class WXMP
 
         //数据验证，对必选参数进行判空。
         if (!$media_id) {
-            $data = new stdClass();
+            $data = new \stdClass();
             $data->errcode = '1201';
             $data->errmsg = 'media_id不能为空';
             return $data;
@@ -449,7 +447,7 @@ class WXMP
      * @param article 详情
      * @param index 要更新的文章在图文消息中的位置（多图文消息时，此字段才有意义），第一篇为0
      */
-    public function updateMaterial($media_id,$article,$index=0)
+    public function updateMaterial($media_id, $article, $index = 0)
     {
         //鉴权信息验证，对必选参数进行判空。
         $auth = $this->accAuth();
@@ -459,14 +457,14 @@ class WXMP
 
         //数据验证，对必选参数进行判空。
         if (!$media_id) {
-            $data = new stdClass();
+            $data = new \stdClass();
             $data->errcode = '1201';
             $data->errmsg = 'media_id不能为空';
             return $data;
         }
 
         //数据验证，对必选参数进行判空。
-        $articles[0]=$article;
+        $articles[0] = $article;
         $verify = $this->newsVerify($articles);
         if ($verify != "") {
             return $verify;
@@ -492,7 +490,7 @@ class WXMP
         $header = array("Accept:application/$this->BodyType", "Content-Type:application/$this->BodyType;charset=utf-8");
 
         // 发送请求
-        $data = json_encode(array('media_id' => $media_id,'index'=>$index,'articles'=>$article), JSON_UNESCAPED_UNICODE);
+        $data = json_encode(array('media_id' => $media_id, 'index' => $index, 'articles' => $article), JSON_UNESCAPED_UNICODE);
 
         $result = $this->curl_post($url, $data, $header);
         $this->showlog("response body = " . $result . "\r\n");
@@ -512,7 +510,7 @@ class WXMP
      */
     public function newsVerify($articles)
     {
-        $data = new stdClass();
+        $data = new \stdClass();
         $wrong = false;
 
         if (is_array($articles)) {
@@ -567,17 +565,16 @@ class WXMP
     {
 
         if ($this->appsecret == "") {
-            $data = new stdClass();
+            $data = new \stdClass();
             $data->errcode = '1003';
             $data->errmsg = '应用密钥为空';
             return $data;
         }
         if ($this->appid == "") {
-            $data = new stdClass();
+            $data = new \stdClass();
             $data->errcode = '1002';
             $data->errmsg = '应用ID为空';
             return $data;
         }
     }
 }
-?>
